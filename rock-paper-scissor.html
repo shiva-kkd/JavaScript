@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Rock Paper Scissors</title>
+   </head>
+   <body>
+      <p>Rock Paper Scissors</p>
+      <button onclick="
+         computerMove=Math.random();
+         if(computerMove<=(1/3)){
+            alert('You and Computer both picked rock, Tie');
+         }
+         else if(computerMove<=(2/3)){
+            alert('You picked Rock and Computer Picked Paper, You lose');
+         }
+         else{
+            alert('you picked Rock and computer picked Scissor, You win');
+         }
+      ">Rock</button>
+      <button onclick="
+         computerMove=Math.random();
+         if(computerMove<=(1/3)){
+            alert('Ypu picked Paper and Computer picked Rock, Win');
+         }
+         else if(computerMove<=(2/3)){
+            alert('You picked Paper and Computer picked Paper, so Tie');
+         }
+         else{
+            alert('You picked Paper and computer picked Scissor, You lose');
+         }
+      ">Paper</button>
+      <button onclick="
+         computerMove=Math.random();
+         if(computerMove<=(1/3)){
+            alert('You picked Scissor and computer picked Rock, You lose');
+         }
+         else if(computerMove<=(2/3)){
+            alert('You picked Scissor and Computer picked paper, You Win');
+         }
+         else{
+            alert('you picked Scissor and Computer picked Scissor, So, Tie');
+         }
+      ">Scissor</button>
+
+      <script>
+         let computerMove;
+         console.log(computerMove);
+      </script>
+
+   </body>
+</html>
