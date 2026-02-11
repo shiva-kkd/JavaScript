@@ -6,46 +6,37 @@
    <body>
       <p>Rock Paper Scissors</p>
       <button onclick="
-         let computerMove=ComputerMove();
-         if(computerMove<=(1/3)){
-            alert('You and Computer both picked rock, Tie');
-         }
-         else if(computerMove<=(2/3)){
-            alert('You picked Rock and Computer Picked Paper, You lose');
-         }
-         else{
-            alert('you picked Rock and computer picked Scissor, You win');
-         }
+         let yourMove='Rock';
+         alert(display(yourMove));
+         
       ">Rock</button>
       <button onclick="
-         let computerMove=ComputerMove();
-         if(computerMove<=(1/3)){
-            alert('Ypu picked Paper and Computer picked Rock, Win');
-         }
-         else if(computerMove<=(2/3)){
-            alert('You picked Paper and Computer picked Paper, so Tie');
-         }
-         else{
-            alert('You picked Paper and computer picked Scissor, You lose');
-         }
+         let yourMove='Paper';
+         alert(display(yourMove));
       ">Paper</button>
       <button onclick="
-         let computerMove=ComputerMove();
-         if(computerMove<=(1/3)){
-            alert('You picked Scissor and computer picked Rock, You lose');
-         }
-         else if(computerMove<=(2/3)){
-            alert('You picked Scissor and Computer picked paper, You Win');
-         }
-         else{
-            alert('you picked Scissor and Computer picked Scissor, So, Tie');
-         }
+         let yourMove='Scissor';
+         alert(display(yourMove));
       ">Scissor</button>
 
       <script>
 
          function ComputerMove(){
-            return Math.random();
+            let comMove=Math.random();
+            if(comMove<=(1/3)) return 'Rock';
+            else if(comMove<=(2/3)) return 'Paper';
+            else return 'Scissor';
+         }
+
+         function display(yourMove){
+            let comMove=ComputerMove();
+            if(yourMove===comMove) return `you picked ${yourMove} and computer picked ${comMove}, So Tie`;
+            else if((yourMove==='Rock' && comMove==='Scissor') || (yourMove==='Paper' && comMove==='Rock') || (yourMove==='Scissor' && comMove==='Paper')){
+               return `you picked ${yourMove} and computer picked ${comMove}, So you Win`;
+            }
+            else return `you picked ${yourMove} and computer picked ${comMove}, So you Lose`;
+            
+            
          }
       </script>
 
