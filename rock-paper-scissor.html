@@ -19,7 +19,19 @@
          alert(display(yourMove));
       ">Scissor</button>
 
+      <button onclick="
+         score.win=0;
+         score.loss=0;
+         score.tie=0;
+      ">Reset Score</button>
+
       <script>
+         const score={
+            win: 0,
+            loss: 0,
+            tie: 0
+
+         };
 
          function ComputerMove(){
             let comMove=Math.random();
@@ -30,11 +42,18 @@
 
          function display(yourMove){
             let comMove=ComputerMove();
-            if(yourMove===comMove) return `you picked ${yourMove} and computer picked ${comMove}, So Tie`;
-            else if((yourMove==='Rock' && comMove==='Scissor') || (yourMove==='Paper' && comMove==='Rock') || (yourMove==='Scissor' && comMove==='Paper')){
-               return `you picked ${yourMove} and computer picked ${comMove}, So you Win`;
+            if(yourMove===comMove){
+               score.tie++;
+               return `you picked ${yourMove} and computer picked ${comMove}, So Tie\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
             }
-            else return `you picked ${yourMove} and computer picked ${comMove}, So you Lose`;
+            else if((yourMove==='Rock' && comMove==='Scissor') || (yourMove==='Paper' && comMove==='Rock') || (yourMove==='Scissor' && comMove==='Paper')){
+               score.win++;
+               return `you picked ${yourMove} and computer picked ${comMove}, So you Win\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
+            }
+            else{
+               score.loss++;
+               return `you picked ${yourMove} and computer picked ${comMove}, So you Lose\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
+            }
             
             
          }
