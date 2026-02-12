@@ -26,12 +26,12 @@
       ">Reset Score</button>
 
       <script>
-         const score={
+         const score=JSON.parse(localStorage.getItem('score'))||{
             win: 0,
             loss: 0,
             tie: 0
-
          };
+
 
          function ComputerMove(){
             let comMove=Math.random();
@@ -44,16 +44,21 @@
             let comMove=ComputerMove();
             if(yourMove===comMove){
                score.tie++;
+               localStorage.setItem('score', JSON.stringify(score));
                return `you picked ${yourMove} and computer picked ${comMove}, So Tie\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
             }
             else if((yourMove==='Rock' && comMove==='Scissor') || (yourMove==='Paper' && comMove==='Rock') || (yourMove==='Scissor' && comMove==='Paper')){
                score.win++;
+               localStorage.setItem('score', JSON.stringify(score));
                return `you picked ${yourMove} and computer picked ${comMove}, So you Win\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
             }
             else{
                score.loss++;
+               localStorage.setItem('score', JSON.stringify(score));
                return `you picked ${yourMove} and computer picked ${comMove}, So you Lose\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
             }
+
+            
             
             
          }
