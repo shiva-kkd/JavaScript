@@ -7,17 +7,24 @@
       <p>Rock Paper Scissors</p>
       <button onclick="
          let yourMove='Rock';
-         alert(display(yourMove));
+         let result=display(yourMove);
+         dis(result);
+         
+         
          
       ">Rock</button>
       <button onclick="
          let yourMove='Paper';
-         alert(display(yourMove));
+         let result=display(yourMove);
+         dis(result);
       ">Paper</button>
       <button onclick="
          let yourMove='Scissor';
-         alert(display(yourMove));
+         let result=display(yourMove);
+         dis(result);
       ">Scissor</button>
+      
+      <p class="js-result"></p>
 
       <button onclick="
          score.win=0;
@@ -46,22 +53,23 @@
             if(yourMove===comMove){
                score.tie++;
                localStorage.setItem('score', JSON.stringify(score));
-               return `you picked ${yourMove} and computer picked ${comMove}, So Tie\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
+               return 'Tie';
             }
             else if((yourMove==='Rock' && comMove==='Scissor') || (yourMove==='Paper' && comMove==='Rock') || (yourMove==='Scissor' && comMove==='Paper')){
                score.win++;
                localStorage.setItem('score', JSON.stringify(score));
-               return `you picked ${yourMove} and computer picked ${comMove}, So you Win\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
+               return 'You win';
             }
             else{
                score.loss++;
                localStorage.setItem('score', JSON.stringify(score));
-               return `you picked ${yourMove} and computer picked ${comMove}, So you Lose\nWins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
-            }
+               return 'You lose';
+            } 
+         }
 
-            
-            
-            
+         function dis(result){
+            let display_result=document.querySelector('.js-result');
+            display_result.innerText=`${result}.`;
          }
       </script>
 
