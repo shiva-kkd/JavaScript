@@ -6,31 +6,40 @@
    <body>
       <p>Rock Paper Scissors</p>
       <button onclick="
-         let yourMove='Rock';
+         let yourMove='rock';
          let result=display(yourMove);
          dis(result);
+         disMatch(yourMove, ComputerMove());
+         disScore();
          
          
          
       ">Rock</button>
       <button onclick="
-         let yourMove='Paper';
+         let yourMove='paper';
          let result=display(yourMove);
          dis(result);
+         disMatch(yourMove, ComputerMove());
+         disScore();
       ">Paper</button>
       <button onclick="
-         let yourMove='Scissor';
+         let yourMove='scissor';
          let result=display(yourMove);
          dis(result);
+         disMatch(yourMove, ComputerMove());
+         disScore();
       ">Scissor</button>
       
       <p class="js-result"></p>
+      <p class="js-match"></p>
+      <p class="js-score"></p>
 
       <button onclick="
          score.win=0;
          score.loss=0;
          score.tie=0;
          localStorage.removeItem('score');
+         disScore();
       ">Reset Score</button>
 
       <script>
@@ -43,9 +52,9 @@
 
          function ComputerMove(){
             let comMove=Math.random();
-            if(comMove<=(1/3)) return 'Rock';
-            else if(comMove<=(2/3)) return 'Paper';
-            else return 'Scissor';
+            if(comMove<=(1/3)) return 'rock';
+            else if(comMove<=(2/3)) return 'paper';
+            else return 'scissor';
          }
 
          function display(yourMove){
@@ -55,7 +64,7 @@
                localStorage.setItem('score', JSON.stringify(score));
                return 'Tie';
             }
-            else if((yourMove==='Rock' && comMove==='Scissor') || (yourMove==='Paper' && comMove==='Rock') || (yourMove==='Scissor' && comMove==='Paper')){
+            else if((yourMove==='rock' && comMove==='scissor') || (yourMove==='paper' && comMove==='rock') || (yourMove==='scissor' && comMove==='paper')){
                score.win++;
                localStorage.setItem('score', JSON.stringify(score));
                return 'You win';
@@ -70,6 +79,15 @@
          function dis(result){
             let display_result=document.querySelector('.js-result');
             display_result.innerText=`${result}.`;
+         }
+         function disMatch(yourMove, compMove){
+            let matchEle=document.querySelector('.js-match');
+            matchEle.innerText=`You ${yourMove} - ${compMove} Computer`
+         }
+
+         function disScore(){
+            let scoreEle=document.querySelector('.js-score');
+            scoreEle.innerText=`Wins: ${score.win}, Losses: ${score.loss}, Ties: ${score.tie}`;
          }
       </script>
 
